@@ -86,3 +86,15 @@ a.desc:after {
 .form-group {
     margin-bottom: 1rem;
 }
+
+.left_footer{
+    width: 70%;
+}
+
+.right_footer{
+
+}
+
+.coll{
+    width: 30%;
+}
