@@ -87,9 +87,6 @@ AppAsset::register($this);
             <p style="margin-left: 10%"><b>Телефон:</b> 8(800) 555 03 11</p>
             <p style="margin-left: 10%"><b>E-mail:</b> <a href="mailto:mishatitovmail.ru@gmail.com">mishatitovmail.ru@gmail.com</a></p>
         </div>
-        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-            <img width="80" height="80" src="<?= \yii\helpers\Url::to('img/logo.svg') ?>" alt="logo">
-        </a>
     </div>
 </footer>
 

@@ -1,5 +1,5 @@
 main > .container {
-    padding: 70px 15px 20px;
+    padding: 20px 15px 20px;
 }
 
 .footer {
@@ -91,10 +91,42 @@ a.desc:after {
     width: 70%;
 }
 
-.right_footer{
-
-}
-
 .coll{
     width: 30%;
+    display: grid;
+}
+
+.img_prodash{
+    border-radius: 10px;
+    /*width: 116px;*/
+    /*height: 143px;*/
+    margin: auto;
+    padding: 10px;
+}
+
+.list_tovar{
+    display: flex;
+}
+
+.el_tovar{
+    display: flex;
+}
+
+.btn_info_tovar{
+    width: 90%;
+    height: 30px;
+    background: white;
+    border: 1px solid black;
+    display: grid;
+    margin: auto;
+}
+
+.btn_info_tovar:hover{
+    transition: 0.3s;
+    background: gray;
+    color: white;
+}
+
+.btn_info_tovar:not(:hover){
+    transition: 0.3s;
 }
