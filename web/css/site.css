@@ -141,3 +141,18 @@ a.desc:after {
 .list_catalog:hover{
     border-bottom: solid 2px #212529;
 }
+
+.contacts{
+    border-radius: 5px;
+    background: #bebcbc;
+    font-family: Inter;
+    font-size: 23px;
+    text-align: center;
+}
+
+.manager{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 5px;
+}

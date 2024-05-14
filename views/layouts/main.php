@@ -1,6 +1,7 @@
 <?php
 
 /** @var yii\web\View $this */
+
 /** @var string $content */
 
 use app\assets\AppAsset;
@@ -13,42 +14,61 @@ use yii\bootstrap5\NavBar;
 AppAsset::register($this);
 
 ?>
-<?php $this->beginPage() ?>
+<?php
+$this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" class="h-100">
 <head>
     <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
+    <?php
+    $this->head() ?>
 </head>
 <body class="d-flex flex-column h-100">
-<?php $this->beginBody() ?>
+<?php
+$this->beginBody() ?>
 
 <header id="header">
     <div class="container">
-    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-      <div class="col-md-3 mb-2 mb-md-0">
-        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-            <img width="80" height="80" src="<?= \yii\helpers\Url::to('../img/logo.svg') ?>" alt="logo">
-        </a>
-      </div>
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <div class="col-md-3 mb-2 mb-md-0">
+                <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+                    <img width="80" height="80" src="<?= \yii\helpers\Url::to('../img/logo.svg') ?>" alt="logo">
+                </a>
+            </div>
 
-      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2" style="border-bottom: 1px solid black; height: 35px; color: black">Товары</a></li>
-        <li><a href="#" class="nav-link px-2" style="height: 35px; color: black">Контакты</a></li>
-        <li><a href="#" class="nav-link px-2" style="height: 35px; color: black">Конструктор</a></li>
-      </ul>
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <?php
+                if ($_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/site/catalog'): ?>
+                    <li><a href="" class="nav-link px-2"
+                           style="border-bottom: 1px solid black; height: 35px; color: black">Товары</a></li>
+                    <li><a href="<?= \yii\helpers\Url::to('../site/contacts') ?>" class="nav-link px-2"
+                           style="height: 35px; color: black">Контакты</a></li>
+                    <li><a href="#" class="nav-link px-2" style="height: 35px; color: black">Конструктор</a></li>
+                <?php
+                endif; ?>
 
-      <div class="col-md-3 text-end">
-        <button type="button" class="btn btn-outline-primary me-2">Login</button>
-        <button type="button" class="btn btn-primary">Sign-up</button>
-      </div>
-    </header>
+                <?php
+                if ($_SERVER['REQUEST_URI'] == '/site/contacts'): ?>
+                    <li><a href="/" class="nav-link px-2"
+                           style="height: 35px; color: black">Товары</a></li>
+                    <li><a href="<?= \yii\helpers\Url::to('../site/contacts') ?>" class="nav-link px-2"
+                           style="border-bottom: 1px solid black; height: 35px; color: black">Контакты</a></li>
+                    <li><a href="#" class="nav-link px-2" style="height: 35px; color: black">Конструктор</a></li>
+                <?php
+                endif; ?>
+            </ul>
+
+            <div class="col-md-3 text-end">
+                <button type="button" class="btn btn-outline-primary me-2">Login</button>
+                <button type="button" class="btn btn-primary">Sign-up</button>
+            </div>
+        </header>
         <div align="center">
-            <?= \yii\helpers\Html::a('Кровать',['./site/catalog'],['class'=>'list_catalog']) ?>
-            <?= \yii\helpers\Html::a('Кровать',['./site/catalog'],['class'=>'list_catalog']) ?>
-            <?= \yii\helpers\Html::a('Кровать',['./site/catalog'],['class'=>'list_catalog']) ?>
+            <?= \yii\helpers\Html::a('Кровать', ['./site/catalog'], ['class' => 'list_catalog']) ?>
+            <?= \yii\helpers\Html::a('Кровать', ['./site/catalog'], ['class' => 'list_catalog']) ?>
+            <?= \yii\helpers\Html::a('Кровать', ['./site/catalog'], ['class' => 'list_catalog']) ?>
         </div>
-  </div>
+    </div>
 </header>
 
 <main id="main" class="flex-shrink-0" role="main">
@@ -77,25 +97,21 @@ AppAsset::register($this);
                 </div>
             </div>
             <div class="right_footer">
-                <h3>Контакты</h3>
-                <div class="list_coll" style="display: flex">
-                    <div class="coll">
-                        <p>Спальня</p>
-                        <p>Гостиная</p>
-                        <p>Прихожая</p>
-                    </div>
-                </div>
+                <a href="../site/contacts" style="text-decoration: none; color: black; font-size: 36px">Контакты</a>
             </div>
         </div>
         <div style="display: flex; background: #E9E9E9; width: 100%; padding: 20px;">
             <i style="margin-left: 20%">Нужна помощь?</i>
-            <p style="margin-left: 10%"><b>Телефон:</b> 8(800) 555 03 11</p>
-            <p style="margin-left: 10%"><b>E-mail:</b> <a href="mailto:mishatitovmail.ru@gmail.com">mishatitovmail.ru@gmail.com</a></p>
+            <p style="margin-left: 10%"><b>Телефон:</b> 8(800) 555 30 05</p>
+            <p style="margin-left: 10%"><b>E-mail:</b> <a href="mailto:mishatitovmail.ru@gmail.com">mishatitovmail.ru@gmail.com</a>
+            </p>
         </div>
     </div>
 </footer>
 
-<?php $this->endBody() ?>
+<?php
+$this->endBody() ?>
 </body>
 </html>
-<?php $this->endPage() ?>
+<?php
+$this->endPage() ?>

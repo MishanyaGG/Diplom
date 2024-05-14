@@ -4,9 +4,6 @@
 
 $this->title = 'My Yii Application';
 ?>
-<!--<div align="center">-->
-<!--    --><?//= \yii\helpers\Html::a('Кровать',['catalog'],['class'=>'list_catalog']) ?>
-<!--</div>-->
 
 <h3>Товары</h3>
 <div class="list_tovar">
