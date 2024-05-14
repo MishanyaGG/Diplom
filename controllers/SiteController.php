@@ -64,6 +64,14 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionCatalog(){
+        return $this->render('catalog');
+    }
+
+    public function actionContacts(){
+        return $this->render('contacts');
+    }
+
     /**
      * Login action.
      *
