@@ -5,6 +5,7 @@
 /** @var string $content */
 
 use app\assets\AppAsset;
+use app\models\TypeFurniture;
 use app\widgets\Alert;
 use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
@@ -12,6 +13,8 @@ use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
 
 AppAsset::register($this);
+
+$typeFurniture = TypeFurniture::find()->all();
 
 ?>
 <?php
@@ -37,15 +40,15 @@ $this->beginBody() ?>
             </div>
 
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <?php
-                if ($_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/site/catalog'): ?>
-                    <li><a href="" class="nav-link px-2"
-                           style="border-bottom: 1px solid black; height: 35px; color: black">Товары</a></li>
-                    <li><a href="<?= \yii\helpers\Url::to('../site/contacts') ?>" class="nav-link px-2"
-                           style="height: 35px; color: black">Контакты</a></li>
-                    <li><a href="#" class="nav-link px-2" style="height: 35px; color: black">Конструктор</a></li>
-                <?php
-                endif; ?>
+<!--                --><?php
+//                if ($_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/site/catalog') : ?>
+<!--                    <li><a href="" class="nav-link px-2"-->
+<!--                           style="border-bottom: 1px solid black; height: 35px; color: black">Товары</a></li>-->
+<!--                    <li><a href="--><?//= \yii\helpers\Url::to('../site/contacts') ?><!--" class="nav-link px-2"-->
+<!--                           style="height: 35px; color: black">Контакты</a></li>-->
+<!--                    <li><a href="#" class="nav-link px-2" style="height: 35px; color: black">Конструктор</a></li>-->
+<!--                --><?php
+//                endif; ?>
 
                 <?php
                 if ($_SERVER['REQUEST_URI'] == '/site/contacts'): ?>
@@ -54,8 +57,13 @@ $this->beginBody() ?>
                     <li><a href="<?= \yii\helpers\Url::to('../site/contacts') ?>" class="nav-link px-2"
                            style="border-bottom: 1px solid black; height: 35px; color: black">Контакты</a></li>
                     <li><a href="#" class="nav-link px-2" style="height: 35px; color: black">Конструктор</a></li>
-                <?php
-                endif; ?>
+                <?php else: ?>
+                    <li><a href="" class="nav-link px-2"
+                           style="border-bottom: 1px solid black; height: 35px; color: black">Товары</a></li>
+                    <li><a href="<?= \yii\helpers\Url::to('../site/contacts') ?>" class="nav-link px-2"
+                           style="height: 35px; color: black">Контакты</a></li>
+                    <li><a href="#" class="nav-link px-2" style="height: 35px; color: black">Конструктор</a></li>
+                <?php endif; ?>
             </ul>
 
             <div class="col-md-3 text-end">
@@ -64,9 +72,9 @@ $this->beginBody() ?>
             </div>
         </header>
         <div align="center">
-            <?= \yii\helpers\Html::a('Кровать', ['./site/catalog'], ['class' => 'list_catalog']) ?>
-            <?= \yii\helpers\Html::a('Кровать', ['./site/catalog'], ['class' => 'list_catalog']) ?>
-            <?= \yii\helpers\Html::a('Кровать', ['./site/catalog'], ['class' => 'list_catalog']) ?>
+             <?php foreach ($typeFurniture as $value): ?>
+                <?= \yii\helpers\Html::a($value['name_type'], ['./list-furniture/index?name_type='.$value['id']], ['class' => 'list_catalog']) ?>
+             <?php endforeach; ?>
         </div>
     </div>
 </header>
