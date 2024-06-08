@@ -72,9 +72,11 @@ $this->beginBody() ?>
             </div>
         </header>
         <div align="center">
+            <?php if($_SERVER['REQUEST_URI'] == '/site/' || $_SERVER['REQUEST_URI'] == '/'): ?>
              <?php foreach ($typeFurniture as $value): ?>
                 <?= \yii\helpers\Html::a($value['name_type'], ['./list-furniture/index?name_type='.$value['id']], ['class' => 'list_catalog']) ?>
              <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 </header>
@@ -91,17 +93,21 @@ $this->beginBody() ?>
             <div class="left_footer">
                 <h3>Каталог</h3>
                 <div class="list_coll" style="display: flex">
-                    <div class="coll">
-                        <p>Спальня</p>
-                        <p>Гостиная</p>
-                        <p>Прихожая</p>
-                    </div>
 
                     <div class="coll">
-                        <p>Молодежная</p>
-                        <p>Кабинет</p>
-                        <p>Кухня</p>
-                    </div>
+                        <?php $i = 0; foreach ($typeFurniture as $value): ?>
+                            <?php if ($i != 3): ?>
+                                <?= \yii\helpers\Html::a($value['name_type'], ['./list-furniture/index?name_type='.$value['id']], ['style'=>'text-decoration: none; color: black; font-size: 20px; padding: 5px']) ?>
+                                <?php $i++; ?>
+                            <?php else: ?>
+                                </div>
+                                <div class="coll">
+                                    <?= \yii\helpers\Html::a($value['name_type'], ['./list-furniture/index?name_type='.$value['id']], ['style'=>'text-decoration: none; color: black; font-size: 20px; padding: 5px']) ?>
+                                    <?php $i = 0; ?>
+                            <?php endif; ?>
+
+                        <?php endforeach; ?>
+                                </div>
                 </div>
             </div>
             <div class="right_footer">
