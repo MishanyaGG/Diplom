@@ -67,8 +67,12 @@ $this->beginBody() ?>
             </ul>
 
             <div class="col-md-3 text-end">
-                <button type="button" class="btn btn-outline-primary me-2">Login</button>
-                <button type="button" class="btn btn-primary">Sign-up</button>
+                <?php if(Yii::$app->user->isGuest): ?>
+                    <button type="button" class="btn btn-outline-primary me-2">Регистрация</button>
+                    <a href="<?= \yii\helpers\Url::to('/login/index') ?>"><button type="button" class="btn btn-primary">Войти</button></a>
+                <?php else: ?>
+                    <a href="<?= \yii\helpers\Url::to('/login/logout') ?>"><button type="button" class="btn btn-primary">Выйти</button></a>
+                <?php endif; ?>
             </div>
         </header>
         <div align="center">
