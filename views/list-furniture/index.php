@@ -1,6 +1,6 @@
 <?php
 
-$this->title = 'Список товаров'.$category['name_type'];
+$this->title = 'Список товаров '.$category['name_type'];
 ?>
 
 <h1 align="center"><?= $category['name_type'] ?></h1>
@@ -8,7 +8,17 @@ $this->title = 'Список товаров'.$category['name_type'];
 <div class="list_tovar" style="display: flex">
     <?php foreach ($furniture as $value): $img = \app\models\FurnitureImg::find()->where(['id_furniture'=>$value['id']])->all(); ?>
         <div class="coll">
-            <?php foreach ($img as $row): $photo = file_get_contents($row['img']); $photo = base64_encode($photo); ?>
+            <?php
+                foreach ($img as $row):
+
+                try {
+                    $photo = file_get_contents($row['img']);
+                    $photo = base64_encode($photo);
+
+                } catch (Exception $ex){
+                    $photo = '';
+                }
+                ?>
                 <img class="img_prodash" width="212" height="212"  src="data:image/jpg;base64, <?= $photo ?>" alt="Divan">
             <?php break; endforeach; ?>
             <h5><?= $value['name'] ?></h5>
@@ -19,7 +29,7 @@ $this->title = 'Список товаров'.$category['name_type'];
                 <p style="color: grey; padding: 5px">-<?= $value['discount'] ?> %</p>
                 <img width="26" height="26" src="<?= \yii\helpers\Url::to('../img/Skidka.svg') ?>" alt="Skidka">
             </div>
-            <button class="btn_info_tovar">Подробнее</button>
+            <a href="<?= \yii\helpers\Url::to('info-furniture?id='.$value['id']) ?>" style="text-decoration: none"><button class="btn_info_tovar">Подробнее</button></a>
         </div>
     <?php endforeach; ?>
 </div>

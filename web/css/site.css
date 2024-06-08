@@ -156,3 +156,30 @@ a.desc:after {
     justify-content: center;
     padding: 5px;
 }
+
+.furnitureEl{
+    display: flex;
+    position: relative;
+    left: 20vh;
+}
+
+.imgFurniture{
+    width: 40%;
+}
+
+.infoFurniture{
+    position: relative;
+    margin-left: 10px;
+    width: 30%;
+    height: 20vh;
+    top: 20vh;
+    background: #c2c1c1;
+    border-radius: 10%;
+}
+
+.elInfo{
+    display: flex;
+    position: relative;
+    top: 5%;
+    left: 5%;
+}
