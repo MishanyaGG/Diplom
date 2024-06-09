@@ -3,6 +3,10 @@
 $this->title = ' ' . $furnitureEl['name'];
 ?>
 
+<?php if ($status): ?>
+    <div class="p-3 mb-2 bg-success text-white">Оплата прошла успешно, ожидайте звонка от менеджера</div>
+<?php endif; ?>
+
 <h1><?= $furnitureEl['name'] ?></h1>
 
 <div class="furnitureEl">
@@ -34,15 +38,23 @@ $this->title = ' ' . $furnitureEl['name'];
             <p style="color: grey; padding: 5px">-<?= $furnitureEl['discount'] ?> %</p>
             <img width="26" height="26" src="<?= \yii\helpers\Url::to('../img/Skidka.svg') ?>" alt="Skidka">
         </div>
-        <a href="<?= \yii\helpers\Url::to('#') ?>" style="text-decoration: none"><button class="btn_info_tovar">Купить</button></a>
+        <?php if (!Yii::$app->user->isGuest): ?>
+            <?= $form = \yii\helpers\Html::beginForm('add-order','post') ?>
+                <input type="hidden" value="<?= $furnitureEl['id'] ?>" name="furniture_id">
+                <input type="hidden" value="<?= Yii::$app->user->id ?>" name="client_id">
+                <button type="submit" class="btn_info_tovar">Купить</button>
+            <?= \yii\helpers\Html::endForm() ?>
+            <?php else: ?>
+                <a href="<?= \yii\helpers\Url::to('../login') ?>" style="text-decoration: none"><button type="submit" class="btn_info_tovar">Войдите в учетную запись</button></a>
+        <?php endif; ?>
     </div>
 </div>
 
 <h3>Характеристика</h3>
     <table class="table">
         <tr>
-            <td>Характеристика</td>
-            <td>Значение</td>
+            <td><b>Характеристика</b></td>
+            <td><b>Значение</b></td>
         </tr>
         <tr>
             <td><b>Ширина</b></td>

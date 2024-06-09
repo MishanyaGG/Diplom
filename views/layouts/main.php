@@ -56,13 +56,17 @@ $this->beginBody() ?>
                            style="height: 35px; color: black">Товары</a></li>
                     <li><a href="<?= \yii\helpers\Url::to('../site/contacts') ?>" class="nav-link px-2"
                            style="border-bottom: 1px solid black; height: 35px; color: black">Контакты</a></li>
-                    <li><a href="#" class="nav-link px-2" style="height: 35px; color: black">Конструктор</a></li>
+                    <?php if (!Yii::$app->user->isGuest): ?>
+                        <li><a href="#" class="nav-link px-2" style="height: 35px; color: black">Конструктор</a></li>
+                    <?php endif; ?>
                 <?php else: ?>
                     <li><a href="" class="nav-link px-2"
                            style="border-bottom: 1px solid black; height: 35px; color: black">Товары</a></li>
                     <li><a href="<?= \yii\helpers\Url::to('../site/contacts') ?>" class="nav-link px-2"
                            style="height: 35px; color: black">Контакты</a></li>
-                    <li><a href="#" class="nav-link px-2" style="height: 35px; color: black">Конструктор</a></li>
+                    <?php if (!Yii::$app->user->isGuest): ?>
+                        <li><a href="#" class="nav-link px-2" style="height: 35px; color: black">Конструктор</a></li>
+                    <?php endif; ?>
                 <?php endif; ?>
             </ul>
 
@@ -76,11 +80,9 @@ $this->beginBody() ?>
             </div>
         </header>
         <div align="center">
-            <?php if($_SERVER['REQUEST_URI'] == '/site/' || $_SERVER['REQUEST_URI'] == '/'): ?>
-             <?php foreach ($typeFurniture as $value): ?>
+            <?php foreach ($typeFurniture as $value): ?>
                 <?= \yii\helpers\Html::a($value['name_type'], ['./list-furniture/index?name_type='.$value['id']], ['class' => 'list_catalog']) ?>
-             <?php endforeach; ?>
-            <?php endif; ?>
+            <?php endforeach; ?>
         </div>
     </div>
 </header>
