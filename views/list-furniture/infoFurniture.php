@@ -77,3 +77,25 @@ $this->title = ' ' . $furnitureEl['name'];
             <td><?= $color['name_color'] ?></td>
         </tr>
     </table>
+
+<h1 style="width: 20%">Отзывы</h1>
+<?php if (!Yii::$app->user->isGuest): ?>
+    <?= $form = \yii\helpers\Html::beginForm('../reviews/create','get',['width'=>'100%']) ?>
+        <input type="hidden" value="<?= $furnitureEl['id'] ?>" name="furniture_id">
+        <input type="hidden" value="<?= Yii::$app->user->id ?>" name="client_id">
+        <button class="btn_info_tovar">Создать отзыв</button>
+    <?= \yii\helpers\Html::endForm() ?>
+<?php endif; ?>
+
+<div style="margin-top: 10px;padding: 10px">
+    <?php
+        foreach ($reviews as $value):
+            $user = \app\models\Reviews::findOne($value['id'])->getUsers()->asArray()->all()[0];
+        ?>
+        <h3>Пользователь "<?= $user['first_name'].' '.$user['patronimyc'].' '.$user['last_name'] ?>"</h3>
+        <h3>Оценка <?= $value['grade'] ?>/5</h3>
+        <h3>Описание</h3>
+            <p><?= $value['text'] ?></p>
+            <hr>
+    <?php endforeach; ?>
+</div>

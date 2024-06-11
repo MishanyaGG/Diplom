@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\FurnitureTable;
+use app\models\Reviews;
 use app\models\TypeFurniture;
 use yii\db\Query;
 
@@ -23,6 +24,7 @@ class ListFurnitureController extends \yii\web\Controller
     public function actionInfoFurniture($id, $status = false){
         return $this->render('infoFurniture',[
             'furnitureEl'=>FurnitureTable::findOne($id),
+            'reviews'=>Reviews::find()->where(['furniture_id'=>$id])->asArray()->all(),
             'status'=>$status
         ]);
     }
