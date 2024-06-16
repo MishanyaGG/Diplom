@@ -2,8 +2,10 @@
 
 namespace app\controllers;
 
+use app\models\FurnitureTable;
 use app\models\TypeFurniture;
 use Yii;
+use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
@@ -62,7 +64,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->render('index', [
+            'model'=>(new Query())->select("*")->from('furniture_table')->orderBy("random()")->limit(4)->all()
+        ]);
     }
 
     public function actionCatalog(){
