@@ -34,7 +34,8 @@ class Users extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['last_name', 'first_name', 'patronimyc', 'phone'], 'string', 'max' => 45],
+            [['last_name', 'first_name', 'patronimyc'], 'string', 'max' => 45],
+            [['login', 'password','patronimyc', 'phone','last_name', 'first_name','adress'], 'required'],
             [['adress'], 'string', 'max' => 100],
             [['login', 'password'], 'string', 'max' => 50],
         ];
@@ -47,13 +48,13 @@ class Users extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'last_name' => 'Last Name',
-            'first_name' => 'First Name',
-            'patronimyc' => 'Patronimyc',
-            'phone' => 'Phone',
-            'adress' => 'Adress',
-            'login' => 'Login',
-            'password' => 'Password',
+            'last_name' => 'Фамилия',
+            'first_name' => 'Имя',
+            'patronimyc' => 'Отчество',
+            'phone' => 'Номер телефона (+7 999 999 99 99)',
+            'adress' => 'Адрес',
+            'login' => 'Логин',
+            'password' => 'Пароль',
         ];
     }
 
