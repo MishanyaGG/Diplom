@@ -3,6 +3,7 @@
 namespace tests\unit\models;
 
 use app\models\LoginForm;
+use app\models\Reviews;
 use app\models\Users;
 
 class TestsForSiteTest extends \Codeception\Test\Unit
@@ -30,6 +31,17 @@ class TestsForSiteTest extends \Codeception\Test\Unit
 
 
         $this->assertEquals(true,$rez);
+    }
+
+    function testReviews(){
+        $user = new Reviews();
+        $user->users_id = 7;
+        $user->furniture_id = 3;
+        $user->grade = rand(0,5);
+        $user->text = "lorem";
+        $user->date_create = date('y-m-d');
+
+        $this->assertEquals(true,$user->save());
     }
 
 }
