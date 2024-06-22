@@ -6,7 +6,14 @@ $this->title = 'Список товаров '.$category['name_type'];
 <h1 align="center"><?= $category['name_type'] ?></h1>
 
 <div class="list_tovar" style="display: flex">
-    <?php foreach ($furniture as $value): $img = \app\models\FurnitureImg::find()->where(['id_furniture'=>$value['id']])->all(); ?>
+    <?php foreach ($furniture as $value): $img = \app\models\FurnitureImg::find()->where(['id_furniture'=>$value['id']])->all();
+        if (
+                $value['name'] == "" ||
+                $img == "" ||
+                $value['price'] == 0
+        )
+            continue;
+    ?>
         <div class="coll">
             <?php
                 foreach ($img as $row):
@@ -25,9 +32,11 @@ $this->title = 'Список товаров '.$category['name_type'];
             <p>Цена</p>
             <div class="el_tovar">
                 <h3 style="padding: 5px"><?= floatval($value['price']) - floatval($value['price'])*(intval($value['discount'])/100) ?> &#8381</h3>
-                <s style="padding: 5px"><?= $value['price'] ?> &#8381</s>
-                <p style="color: grey; padding: 5px">-<?= $value['discount'] ?> %</p>
-                <img width="26" height="26" src="<?= \yii\helpers\Url::to('../img/Skidka.svg') ?>" alt="Skidka">
+                <?php if ($value['discount'] != 0): ?>
+                    <s style="padding: 5px"><?= $value['price'] ?> &#8381</s>
+                    <p style="color: grey; padding: 5px">-<?= $value['discount'] ?> %</p>
+                    <img width="26" height="26" src="<?= \yii\helpers\Url::to('../img/Skidka.svg') ?>" alt="Skidka">
+                <?php endif; ?>
             </div>
             <a href="<?= \yii\helpers\Url::to('info-furniture?id='.$value['id']) ?>" style="text-decoration: none"><button class="btn_info_tovar">Подробнее</button></a>
         </div>

@@ -57,7 +57,7 @@ $this->beginBody() ?>
                     <li><a href="<?= \yii\helpers\Url::to('../site/contacts') ?>" class="nav-link px-2"
                            style="border-bottom: 1px solid black; height: 35px; color: black">Контакты</a></li>
                     <?php if (!Yii::$app->user->isGuest): ?>
-                        <li><a href="#" class="nav-link px-2" style="height: 35px; color: black">Конструктор</a></li>
+<!--                        <li><a href="#" class="nav-link px-2" style="height: 35px; color: black">Конструктор</a></li>-->
                     <?php endif; ?>
                 <?php else: ?>
                     <li><a href="" class="nav-link px-2"
@@ -65,7 +65,7 @@ $this->beginBody() ?>
                     <li><a href="<?= \yii\helpers\Url::to('../site/contacts') ?>" class="nav-link px-2"
                            style="height: 35px; color: black">Контакты</a></li>
                     <?php if (!Yii::$app->user->isGuest): ?>
-                        <li><a href="#" class="nav-link px-2" style="height: 35px; color: black">Конструктор</a></li>
+<!--                        <li><a href="#" class="nav-link px-2" style="height: 35px; color: black">Конструктор</a></li>-->
                     <?php endif; ?>
                 <?php endif; ?>
             </ul>

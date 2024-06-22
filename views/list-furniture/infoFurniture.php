@@ -34,9 +34,11 @@ $this->title = ' ' . $furnitureEl['name'];
         <p style="position: relative; top: 5%; left: 5%">Код товара <?= $furnitureEl['id'] ?></p>
         <div class="elInfo">
             <h3 style="padding: 5px"><?= floatval($furnitureEl['price']) - floatval($furnitureEl['price'])*(intval($furnitureEl['discount'])/100) ?> &#8381</h3>
-            <s style="padding: 5px"><?= $furnitureEl['price'] ?> &#8381</s>
-            <p style="color: grey; padding: 5px">-<?= $furnitureEl['discount'] ?> %</p>
-            <img width="26" height="26" src="<?= \yii\helpers\Url::to('../img/Skidka.svg') ?>" alt="Skidka">
+            <?php if ($furnitureEl['discount'] != 0): ?>
+                <s style="padding: 5px"><?= $furnitureEl['price'] ?> &#8381</s>
+                <p style="color: grey; padding: 5px">-<?= $furnitureEl['discount'] ?> %</p>
+                <img width="26" height="26" src="<?= \yii\helpers\Url::to('../img/Skidka.svg') ?>" alt="Skidka">
+            <?php endif ?>
         </div>
         <?php if (!Yii::$app->user->isGuest): ?>
             <?= $form = \yii\helpers\Html::beginForm('add-order','post') ?>

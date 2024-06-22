@@ -16,14 +16,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'furniture_id')->textInput(['type'=>'hidden','value'=>$furniture_id])->label(false) ?>
 
-    <?= $form->field($model, 'grade')->textInput(['type'=>'number', 'max'=>5,'min'=>0])->label('Оценка (0-5)') ?>
+    <?= $form->field($model, 'grade')->textInput(['type'=>'number', 'max'=>5,'min'=>0,'required'])->label('Оценка (0-5)') ?>
 
     <?= $form->field($model, 'text')->textarea(['rows' => 6])->label('Описание товара') ?>
 
     <?= $form->field($model, 'date_create')->textInput(['type'=>'hidden','value'=>date('d-m-y')])->label(false) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

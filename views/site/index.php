@@ -3,186 +3,41 @@
 /** @var yii\web\View $this */
 
 $this->title = 'My Yii Application';
+$counter = 0;
 ?>
 
 <h3>Товары</h3>
-<div class="list_tovar">
-    <?php
-    foreach ($model as $value):
-    $img = \app\models\FurnitureImg::find()->where(['id_furniture' => $value['id']])->all(); ?>
 
-        <?php
-        foreach ($img as $row):
-
-            try {
-                $photo = file_get_contents($row['img']);
-                $photo = base64_encode($photo);
-            } catch (Exception $ex) {
-                $photo = '';
-            }
-            ?>
-        <?php endforeach; ?>
-
-            <div class="coll">
-                <img class="img_prodash" width="232" height="286" style="border-radius: 10%" src="data:image/jpg;base64, <?= $photo ?>" alt="Divan">
-                <h5><?= $value['name'] ?></h5>
-            </div>
-        <?php
-    endforeach; ?>
-</div>
-
-<!--<h3 style="margin-top: 20px">Хиты продаж</h3>-->
-<!--<div class="list_tovar" style="display: flex">-->
-<!--    <div class="coll">-->
-<!--        <img class="img_prodash" src="--><?
-//= \yii\helpers\Url::to('../img/Divan.svg')
-?><!--" alt="Divan">-->
-<!--        <h5>Композиция Soho беж. №16 для прихожей</h5>-->
-<!--        <p>Цена</p>-->
-<!--        <div class="el_tovar">-->
-<!--            <h3 style="padding: 5px">94 930 &#8381</h3>-->
-<!--            <s style="padding: 5px">133 700 &#8381</s>-->
-<!--            <p style="color: grey; padding: 5px">-29 %</p>-->
-<!--            <img width="26" height="26" src="--><?
-//= \yii\helpers\Url::to('../img/Skidka.svg')
-?><!--" alt="Skidka">-->
-<!--        </div>-->
-<!--        <button class="btn_info_tovar">Подробнее</button>-->
-<!--    </div>-->
-<!---->
-<!--    <div class="coll">-->
-<!--        <img class="img_prodash" src="--><?
-//= \yii\helpers\Url::to('../img/Divan2.svg')
-?><!--" alt="Divan2">-->
-<!--        <h5>Кровати</h5>-->
-<!--        <p>Цена</p>-->
-<!--        <div class="el_tovar">-->
-<!--            <h3 style="padding: 5px">94 930 &#8381</h3>-->
-<!--            <s style="padding: 5px">133 700 &#8381</s>-->
-<!--            <p style="color: grey; padding: 5px">-29 %</p>-->
-<!--            <img width="26" height="26" src="--><?
-//= \yii\helpers\Url::to('../img/Skidka.svg')
-?><!--" alt="Skidka">-->
-<!--        </div>-->
-<!--        <button class="btn_info_tovar">Подробнее</button>-->
-<!--    </div>-->
-<!---->
-<!--    <div class="coll">-->
-<!--        <img class="img_prodash" src="--><?
-//= \yii\helpers\Url::to('../img/Shkaw.svg')
-?><!--" alt="Shkaw">-->
-<!--        <h5>Кровати</h5>-->
-<!--        <p>Цена</p>-->
-<!--        <div class="el_tovar">-->
-<!--            <h3 style="padding: 5px">94 930 &#8381</h3>-->
-<!--            <s style="padding: 5px">133 700 &#8381</s>-->
-<!--            <p style="color: grey; padding: 5px">-29 %</p>-->
-<!--            <img width="26" height="26" src="--><?
-//= \yii\helpers\Url::to('../img/Skidka.svg')
-?><!--" alt="Skidka">-->
-<!--        </div>-->
-<!--        <button class="btn_info_tovar">Подробнее</button>-->
-<!--    </div>-->
-<!---->
-<!--    <div class="coll">-->
-<!--        <img class="img_prodash" src="--><?
-//= \yii\helpers\Url::to('../img/Stenka.svg')
-?><!--" alt="Stenka">-->
-<!--        <h5>Кровати</h5>-->
-<!--        <p>Цена</p>-->
-<!--        <div class="el_tovar">-->
-<!--            <h3 style="padding: 5px">94 930 &#8381</h3>-->
-<!--            <s style="padding: 5px">133 700 &#8381</s>-->
-<!--            <p style="color: grey; padding: 5px">-29 %</p>-->
-<!--            <img width="26" height="26" src="--><?
-//= \yii\helpers\Url::to('../img/Skidka.svg')
-?><!--" alt="Skidka">-->
-<!--        </div>-->
-<!--        <button class="btn_info_tovar">Подробнее</button>-->
-<!--    </div>-->
-<!--</div>-->
-
-<div style="display: flex; margin-top: 30px">
-    <div style="width: 60%">
-        <img width="820" height="300" src="<?= \yii\helpers\Url::to('img/Konstructor.svg') ?>" alt="Konstructor">
-    </div>
-    <div style="background: #889D92; color: white;">
-        <div style="margin-left: 10px; margin-top: 30px">
-            <p>МЕБЕЛЬ НА ЗАКАЗ</p>
-            <h2>НЕ НАШЛИ ТО, ЧТО ИСКАЛИ?</h2>
-            <p>Закажите индивидуальный расчет шкафа или стола по вашим размерам</p>
-            <a style="text-decoration: none; color: white;" href="#">Подробнее &gt</a>
+<div class="list_tovar" style="display: flex">
+    <?php foreach ($model as $value): $img = \app\models\FurnitureImg::find()->where(['id_furniture'=>$value['id']])->all();  ?>
+    <?php if ($counter >= 3): $counter = 1; ?>
         </div>
-    </div>
-</div>
+        <div class="list_tovar" style="display: flex">
+    <?php endif; ?>
+        <div class="coll">
+            <?php
+                foreach ($img as $row):
 
-<!--<h3 style="margin-top: 20px">Новинки</h3>-->
-<!--<div class="list_tovar" style="display: flex">-->
-<!--    <div class="coll">-->
-<!--        <img class="img_prodash" src="--><?
-//= \yii\helpers\Url::to('../img/Divan.svg')
-?><!--" alt="Divan">-->
-<!--        <h5>Композиция Soho беж. №16 для прихожей</h5>-->
-<!--        <p>Цена</p>-->
-<!--        <div class="el_tovar">-->
-<!--            <h3 style="padding: 5px">94 930 &#8381</h3>-->
-<!--            <s style="padding: 5px">133 700 &#8381</s>-->
-<!--            <p style="color: grey; padding: 5px">-29 %</p>-->
-<!--            <img width="26" height="26" src="--><?
-//= \yii\helpers\Url::to('../img/Skidka.svg')
-?><!--" alt="Skidka">-->
-<!--        </div>-->
-<!--        <button class="btn_info_tovar">Подробнее</button>-->
-<!--    </div>-->
-<!---->
-<!--    <div class="coll">-->
-<!--        <img class="img_prodash" src="--><?
-//= \yii\helpers\Url::to('../img/Divan2.svg')
-?><!--" alt="Divan2">-->
-<!--        <h5>Кровати</h5>-->
-<!--        <p>Цена</p>-->
-<!--        <div class="el_tovar">-->
-<!--            <h3 style="padding: 5px">94 930 &#8381</h3>-->
-<!--            <s style="padding: 5px">133 700 &#8381</s>-->
-<!--            <p style="color: grey; padding: 5px">-29 %</p>-->
-<!--            <img width="26" height="26" src="--><?
-//= \yii\helpers\Url::to('../img/Skidka.svg')
-?><!--" alt="Skidka">-->
-<!--        </div>-->
-<!--        <button class="btn_info_tovar">Подробнее</button>-->
-<!--    </div>-->
-<!---->
-<!--    <div class="coll">-->
-<!--        <img class="img_prodash" src="--><?
-//= \yii\helpers\Url::to('../img/Shkaw.svg')
-?><!--" alt="Shkaw">-->
-<!--        <h5>Кровати</h5>-->
-<!--        <p>Цена</p>-->
-<!--        <div class="el_tovar">-->
-<!--            <h3 style="padding: 5px">94 930 &#8381</h3>-->
-<!--            <s style="padding: 5px">133 700 &#8381</s>-->
-<!--            <p style="color: grey; padding: 5px">-29 %</p>-->
-<!--            <img width="26" height="26" src="--><?
-//= \yii\helpers\Url::to('../img/Skidka.svg')
-?><!--" alt="Skidka">-->
-<!--        </div>-->
-<!--        <button class="btn_info_tovar">Подробнее</button>-->
-<!--    </div>-->
-<!---->
-<!--    <div class="coll">-->
-<!--        <img class="img_prodash" src="--><?
-//= \yii\helpers\Url::to('../img/Stenka.svg')
-?><!--" alt="Stenka">-->
-<!--        <h5>Кровати</h5>-->
-<!--        <p>Цена</p>-->
-<!--        <div class="el_tovar">-->
-<!--            <h3 style="padding: 5px">94 930 &#8381</h3>-->
-<!--            <s style="padding: 5px">133 700 &#8381</s>-->
-<!--            <p style="color: grey; padding: 5px">-29 %</p>-->
-<!--            <img width="26" height="26" src="--><?
-//= \yii\helpers\Url::to('../img/Skidka.svg')
-?><!--" alt="Skidka">-->
-<!--        </div>-->
-<!--        <button class="btn_info_tovar">Подробнее</button>-->
-<!--    </div>-->
-<!--</div>-->
+                try {
+                    $photo = file_get_contents($row['img']);
+                    $photo = base64_encode($photo);
+
+                } catch (Exception $ex){
+                    $photo = '';
+                }
+                ?>
+                <img class="img_prodash" width="212" height="212"  src="data:image/jpg;base64, <?= $photo ?>" alt="Divan">
+            <?php break; endforeach; ?>
+            <h5><?= $value['name'] ?></h5>
+            <div class="el_tovar">
+                <h3 style="padding: 5px"><?= floatval($value['price']) - floatval($value['price'])*(intval($value['discount'])/100) ?> &#8381</h3>
+                <?php if ($value['discount'] != 0): ?>
+                    <s style="padding: 5px"><?= $value['price'] ?> &#8381</s>
+                    <p style="color: grey; padding: 5px">-<?= $value['discount'] ?> %</p>
+                    <img width="26" height="26" src="<?= \yii\helpers\Url::to('../img/Skidka.svg') ?>" alt="Skidka">
+                <?php endif; ?>
+            </div>
+            <a href="<?= \yii\helpers\Url::to('list-furniture\info-furniture?id='.$value['id']) ?>" style="text-decoration: none"><button class="btn_info_tovar">Подробнее</button></a>
+        </div>
+    <?php $counter ++; endforeach; ?>
+</div>

@@ -65,7 +65,8 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index', [
-            'model'=>(new Query())->select("*")->from('furniture_table')->orderBy("random()")->limit(4)->all()
+//            'model'=>(new Query())->select("*")->from('furniture_table')->orderBy("random()")->limit(4)->all()
+            'model'=>FurnitureTable::find()->asArray()->all()
         ]);
     }
 
